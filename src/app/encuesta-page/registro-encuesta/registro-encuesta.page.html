@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>registro-encuesta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">registro-encuesta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+    @if(select === "rol"){
+      <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" type="Text input" value="">
+          <div slot="label">nombre del rol <ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="floating" type="text input" placeholder="ej: activo, etc">
+          <div slot="label">estado <ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>  
+    </ion-list>
+
+  }@else if(select === "usuario"){
+    <ion-list>
+      <ion-item>
+        <ion-input labelPlacement="floating" type="Text input" value="">
+          <div slot="label">nombre de usuario <ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="floating" type="paswword" placeholder="password">
+          <div slot="label">paswword <ion-text color="danger">(Required)</ion-text></div>
+        </ion-input>
+      </ion-item>  
+      <ion-item>
+        <ion-select label="Select" placeholder="selecione un rol">
+          
+          @for (item of roles ; track item.id){
+            <ion-select-option value="">{{item.nombreRol}}</ion-select-option>
+          }
+          
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  }@else if( select === "perfil"){
+    en construccion
+  }@else{
+    error
+  }
+  @if(select !== ''){
+    <ion-button [routerLink]="['/gestion-encuesta', select]" expand="block">registrar</ion-button>
+  }
+
+</ion-content>

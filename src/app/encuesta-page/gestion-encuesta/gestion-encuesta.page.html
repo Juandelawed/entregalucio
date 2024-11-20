@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>gestion-encuesta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">gestion-encuesta</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  @if(select === "rol"){
+    <ion-accordion-group>
+      @for (item of roles; track $index) {
+        <ion-accordion value="{{item.id}}">
+          <ion-item slot="header" color="light">
+            <ion-label>{{item.nombreRol}}</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-button>actualizar</ion-button>
+            <ion-button>eliminar</ion-button>
+          </div>
+        </ion-accordion>
+      }
+      
+    </ion-accordion-group>
+  }@else if (select === "usuario") {
+    <ion-accordion-group>
+      @for (item of usuarios; track $index) {
+        <ion-accordion value="{{item.idUser}}">
+          <ion-item slot="header" color="light">
+            <ion-label>{{item.nombre}} - {{item.rolAsignado}}</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-button>actualizar</ion-button>
+            <ion-button>eliminar</ion-button>
+          </div>
+        </ion-accordion>
+      }
+      
+    </ion-accordion-group>
+  }@else if (select === "perfil") {
+    <ion-accordion-group>
+      @for (item of perfiles; track $index) {
+        <ion-accordion value="{{item.idPerfil}}">
+          <ion-item slot="header" color="light">
+            <ion-label>{{item.edad}}</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-button>actualizar</ion-button>
+            <ion-button>eliminar</ion-button>
+          </div>
+        </ion-accordion>
+      }
+      
+    </ion-accordion-group>
+  }@else {
+    ...cargando
+  }
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['/registro-encuesta',select]">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
